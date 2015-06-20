@@ -37,6 +37,7 @@ public class ServerManager {
                 //Disconnect all clients, so the client knows the server has been closed.
                 for(BaseServerClient client : closingServer.getClientList()) {
                     client.getClientSocket().close();
+                    ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(getRowByClient(client));
                 }
                 closingServer.getServerSocket().close();
                 this.servers.remove(closingServer);

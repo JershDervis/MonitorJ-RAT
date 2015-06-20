@@ -4,9 +4,12 @@ import me.jershdervis.monitorj.MonitorJ;
 import me.jershdervis.monitorj.eventapi.EventTarget;
 import me.jershdervis.monitorj.eventapi.events.EventClientConnect;
 import me.jershdervis.monitorj.eventapi.events.EventClientDisconnect;
+import me.jershdervis.monitorj.ui.components.Toaster;
+import me.jershdervis.monitorj.util.ResourceLoader;
 
 import javax.net.ServerSocketFactory;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.ArrayList;
@@ -65,6 +68,13 @@ public class BaseServer implements Runnable {
             System.out.println("LOST CLIENT CONNECTION ON PORT: " + event.getClientServer().getServerSocket().getLocalPort());
             this.clientList.remove(event.getClient());
             ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(event.getClient()));
+            Toaster toaster = new Toaster();
+            toaster.setToasterMessageFont(new Font("Verdana", Font.PLAIN, 14));
+            toaster.setToasterHeight(46);
+            toaster.showToaster(
+                    ResourceLoader.CLIENT_DISCONNECT,
+                    "Lost Connection:\n"
+                            + event.getClient().CLIENT_PC_NAME + ":" + event.getClient().CLIENT_USER_NAME);
         }
     }
 
