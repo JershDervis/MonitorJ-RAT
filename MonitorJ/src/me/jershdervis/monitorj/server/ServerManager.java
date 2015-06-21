@@ -36,6 +36,8 @@ public class ServerManager {
             try {
                 //Disconnect all clients, so the client knows the server has been closed.
                 for(BaseServerClient client : closingServer.getClientList()) {
+                    client.getDataOutputStream().close();
+                    client.getDataInputStream().close();
                     client.getClientSocket().close();
                     ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(getRowByClient(client));
                 }
@@ -71,6 +73,16 @@ public class ServerManager {
         JTable table = MonitorJ.getInstance().getUi().clientListTable;
         for(BaseServerClient client : ServerManager.instance.allClients) {
             if(table.getModel().getValueAt(row, 0) == client.CLIENT_HWID) {
+                return client;
+            }
+        }
+        return null;
+    }
+
+    public BaseServerClient getClientBySelectedRow() {
+        JTable table = MonitorJ.getInstance().getUi().clientListTable;
+        for(BaseServerClient client : ServerManager.instance.allClients) {
+            if(table.getModel().getValueAt(table.getSelectedRow(), 0) == client.CLIENT_HWID) {
                 return client;
             }
         }

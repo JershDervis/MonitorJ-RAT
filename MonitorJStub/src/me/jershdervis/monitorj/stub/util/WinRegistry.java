@@ -382,6 +382,4 @@ public class WinRegistry {
         result[str.length()] = 0;
         return result;
     }
-
-
 }

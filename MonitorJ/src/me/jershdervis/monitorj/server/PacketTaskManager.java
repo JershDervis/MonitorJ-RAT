@@ -18,6 +18,7 @@ public class PacketTaskManager {
     public PacketTaskManager() {
         EventManager.register(this);
         this.addPacketTask(new PingTask());
+        this.addPacketTask(new RemoteChatMessage());
     }
 
     @EventTarget

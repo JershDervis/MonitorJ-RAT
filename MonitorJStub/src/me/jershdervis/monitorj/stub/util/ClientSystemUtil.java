@@ -13,6 +13,14 @@ import java.net.UnknownHostException;
  */
 public class ClientSystemUtil {
 
+    public static String getJavaBinDir() {
+        return System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+    }
+
+    public static File getCurrentRunningJar() throws URISyntaxException {
+        return new File(MonitorJStub.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+    }
+
     public static String getComputerName() throws UnknownHostException {
         return InetAddress.getLocalHost().getHostName();
     }
