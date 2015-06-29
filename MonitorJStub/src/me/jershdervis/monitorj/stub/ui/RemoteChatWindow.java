@@ -74,7 +74,7 @@ public class RemoteChatWindow extends JFrame {
     private void sendMessage() {
         BaseClient serverClientConnection = MonitorJStub.getInstance().getClientServerConnection();
         try {
-            serverClientConnection.getDataOutputStream().writeByte(Packets.REMOTE_CHAT_MESSAGE);
+            serverClientConnection.getDataOutputStream().writeByte(Packets.REMOTE_CHAT_MESSAGE.getPacketID());
             serverClientConnection.getDataOutputStream().writeUTF(messageField.getText());
             this.chatBoxModel.addElement(ClientSystemUtil.getUsername() + ": " + messageField.getText());
             this.chatBoxList.ensureIndexIsVisible(chatBoxModel.getSize() - 1);

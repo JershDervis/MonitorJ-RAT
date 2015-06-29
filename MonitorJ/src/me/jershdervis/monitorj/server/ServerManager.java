@@ -13,16 +13,35 @@ import java.util.ArrayList;
  */
 public class ServerManager {
 
+    /**
+     * Initialized in current class constructor
+     * Used to give public access of current class
+     */
     public static ServerManager instance;
 
+    /**
+     * Stores all hosted BaseServers
+     */
     public ArrayList<BaseServer> servers = new ArrayList<BaseServer>();
-    public ArrayList<BaseServerClient> allClients = new ArrayList<BaseServerClient>();
 
+    /**
+     * Stores all BaseServerClient connections
+     */
+    public volatile ArrayList<BaseServerClient> allClients = new ArrayList<BaseServerClient>();
+
+    /**
+     * Initializes class instance
+     */
     public ServerManager() {
         if(instance == null)
             instance = this;
     }
 
+    /**
+     * Opens ServerSocket on client port
+     * @param port
+     * @throws IOException
+     */
     public void listenOnPort(int port) throws IOException {
         BaseServer toAdd = new BaseServer(port);
         EventManager.register(toAdd);
@@ -30,6 +49,10 @@ public class ServerManager {
         new Thread(toAdd).start();
     }
 
+    /**
+     * Closes all connections to client on hosted port and closes ServerSocket
+     * @param port
+     */
     public void closeServerOnPort(int port) {
         BaseServer closingServer = this.getBaseServerByPort(port);
         if(closingServer != null && !closingServer.getServerSocket().isClosed()) {
@@ -51,6 +74,11 @@ public class ServerManager {
         }
     }
 
+    /**
+     * Finds and returns BaseServer by hosted port
+     * @param port
+     * @return
+     */
     public BaseServer getBaseServerByPort(int port) {
         for(BaseServer s : servers) {
             if(s.getServerSocket().getLocalPort() == port)
@@ -59,33 +87,56 @@ public class ServerManager {
         return null;
     }
 
+    /**
+     * Finds and returns the row a BaseServerClient is placed in
+     * @param client
+     * @return
+     */
     public int getRowByClient(BaseServerClient client) {
         JTable table = MonitorJ.getInstance().getUi().clientListTable;
         for(int curRow = 0; curRow < table.getModel().getRowCount(); curRow++) {
-            if(table.getModel().getValueAt(curRow, 0) == client.CLIENT_HWID) {
+            if(table.getModel().getValueAt(curRow, 1) == client.CLIENT_HWID) {
                 return curRow;
             }
         }
         return -1;
     }
 
+    /**
+     * Finds and returns BaseServerClient by desired JTable row
+     * @param row
+     * @return
+     */
     public BaseServerClient getClientByRow(int row) {
         JTable table = MonitorJ.getInstance().getUi().clientListTable;
         for(BaseServerClient client : ServerManager.instance.allClients) {
-            if(table.getModel().getValueAt(row, 0) == client.CLIENT_HWID) {
+            if(table.getModel().getValueAt(row, 1) == client.CLIENT_HWID) {
                 return client;
             }
         }
         return null;
     }
 
+    /**
+     * Finds and returns BaseServerClient of the current select row
+     * TODO: Make similar method that returns and array of selected clients if more then 1 client is selected.
+     * @return
+     */
     public BaseServerClient getClientBySelectedRow() {
         JTable table = MonitorJ.getInstance().getUi().clientListTable;
         for(BaseServerClient client : ServerManager.instance.allClients) {
-            if(table.getModel().getValueAt(table.getSelectedRow(), 0) == client.CLIENT_HWID) {
+            if(table.getModel().getValueAt(table.getSelectedRow(), 1) == client.CLIENT_HWID) {
                 return client;
             }
         }
         return null;
+    }
+
+    /**
+     * Returns an ArrayList of all BaseServerClient connections
+     * @return
+     */
+    public ArrayList<BaseServerClient> getAllClients() {
+        return this.allClients;
     }
 }

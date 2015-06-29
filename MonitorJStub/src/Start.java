@@ -1,6 +1,8 @@
 import me.jershdervis.monitorj.stub.MonitorJStub;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.URL;
 import java.util.Properties;
 
 /**

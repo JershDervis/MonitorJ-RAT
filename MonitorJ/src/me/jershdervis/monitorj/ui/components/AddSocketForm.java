@@ -23,6 +23,7 @@ public class AddSocketForm extends javax.swing.JFrame {
      */
     public AddSocketForm(me.jershdervis.monitorj.ui.UserInterface parent) {
         this.parentScreen = parent;
+        setResizable(false);
         initComponents();
     }
 
@@ -47,18 +48,10 @@ public class AddSocketForm extends javax.swing.JFrame {
         setTitle("Add Socket");
 
         addSocketButton.setText("Add Socket");
-        addSocketButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addSocketButtonActionPerformed(evt);
-            }
-        });
+        addSocketButton.addActionListener(evt -> addSocketButtonActionPerformed(evt));
 
         cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
-            }
-        });
+        cancelButton.addActionListener(evt -> cancelButtonActionPerformed(evt));
 
         portSpinner.setModel(new javax.swing.SpinnerNumberModel(1024, 1024, 65535, 1));
 

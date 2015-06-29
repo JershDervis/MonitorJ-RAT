@@ -1,7 +1,5 @@
 package me.jershdervis.monitorj.stub.client;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
@@ -15,7 +13,7 @@ public abstract class PacketTask {
         this.packetID = packetID;
     }
 
-    public abstract void run(DataInputStream inputStream, DataOutputStream outputStream) throws IOException;
+    public abstract void run(BaseClient client) throws IOException;
 
     public int getPacketID() {
         return this.packetID;

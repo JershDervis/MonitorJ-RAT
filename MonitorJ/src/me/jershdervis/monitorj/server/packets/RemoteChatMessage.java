@@ -1,10 +1,9 @@
 package me.jershdervis.monitorj.server.packets;
 
-import me.jershdervis.monitorj.MonitorJ;
 import me.jershdervis.monitorj.server.BaseServerClient;
 import me.jershdervis.monitorj.server.PacketTask;
 import me.jershdervis.monitorj.server.Packets;
-import me.jershdervis.monitorj.ui.components.RemoteChatWindow;
+import me.jershdervis.monitorj.ui.components.RemoteChatFrame;
 
 import java.io.IOException;
 
@@ -13,16 +12,15 @@ import java.io.IOException;
  */
 public class RemoteChatMessage extends PacketTask {
 
-
     public RemoteChatMessage() {
-        super(Packets.REMOTE_CHAT_MESSAGE);
+        super(Packets.REMOTE_CHAT_MESSAGE.getPacketID());
     }
 
     @Override
     public void run(BaseServerClient client) throws IOException {
         String receivedMessage = client.getDataInputStream().readUTF();
-        RemoteChatWindow chatWindow = MonitorJ.getInstance().getUi().getRemoteChatWindowForm();
-        chatWindow.chatBoxModel.addElement(client.CLIENT_USER_NAME + ": " + receivedMessage);
-        chatWindow.chatBoxList.ensureIndexIsVisible(chatWindow.chatBoxModel.getSize() - 1);
+        RemoteChatFrame chatFrame = client.getRemoteChatFrame();
+        chatFrame.chatBoxModel.addElement(client.CLIENT_USER_NAME + ": " + receivedMessage);
+        chatFrame.chatBoxList.ensureIndexIsVisible(chatFrame.chatBoxModel.getSize() - 1);
     }
 }

@@ -1,5 +1,6 @@
 package me.jershdervis.monitorj.stub.eventapi.events;
 
+import me.jershdervis.monitorj.stub.client.BaseClient;
 import me.jershdervis.monitorj.stub.eventapi.Event;
 
 import java.io.DataInputStream;
@@ -11,13 +12,11 @@ import java.io.DataOutputStream;
 public class EventReceivePacket extends Event {
 
     private int packetID;
-    private DataInputStream inputStream;
-    private DataOutputStream outputStream;
+    private BaseClient client;
 
-    public Event call(int packetID, DataInputStream inputStream, DataOutputStream outputStream) {
+    public Event call(int packetID, BaseClient client) {
         this.packetID = packetID;
-        this.inputStream = inputStream;
-        this.outputStream = outputStream;
+        this.client = client;
         return super.call();
     }
 
@@ -25,11 +24,7 @@ public class EventReceivePacket extends Event {
         return this.packetID;
     }
 
-    public DataInputStream getInputStream() {
-        return this.inputStream;
-    }
-
-    public DataOutputStream getOutputStream() {
-        return this.outputStream;
+    public BaseClient getClient() {
+        return this.client;
     }
 }

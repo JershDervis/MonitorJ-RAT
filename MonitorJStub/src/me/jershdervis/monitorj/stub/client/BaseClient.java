@@ -2,11 +2,8 @@ package me.jershdervis.monitorj.stub.client;
 
 import me.jershdervis.monitorj.stub.MonitorJStub;
 
-import javax.net.SocketFactory;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.Socket;
+import java.io.*;
+import java.net.*;
 
 /**
  * Created by Josh on 18/06/2015.
@@ -16,8 +13,8 @@ public class BaseClient implements Runnable {
     private final long RECONNECT_DELAY = 10000L;
 
     private Socket serverSocketConnection;
-    private DataOutputStream outputStream;
-    private DataInputStream inputStream;
+    private DataOutputStream dataOutputStream;
+    private DataInputStream dataInputStream;
 
     private final String address;
     private final int port;
@@ -37,8 +34,8 @@ public class BaseClient implements Runnable {
              */
             try {
                 this.serverSocketConnection = this.connect(this.address, this.port);
-                this.outputStream = new DataOutputStream(serverSocketConnection.getOutputStream());
-                this.inputStream = new DataInputStream(serverSocketConnection.getInputStream());
+                this.dataOutputStream = new DataOutputStream(this.serverSocketConnection.getOutputStream());
+                this.dataInputStream = new DataInputStream(this.serverSocketConnection.getInputStream());
                 System.out.println("Connection Success!");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -57,10 +54,11 @@ public class BaseClient implements Runnable {
              * While the current socket isn't closed
              */
             while (!this.serverSocketConnection.isClosed()) {
+                int packet;
                 try {
-                    int packet;
-                    while ((packet = this.inputStream.readByte()) > -1) //Waits till input detected
-                        MonitorJStub.getInstance().EVENT_RECEIVE_PACKET.call(packet, inputStream, outputStream);
+                    while((packet = this.dataInputStream.readByte()) > 0) {
+                        MonitorJStub.getInstance().EVENT_RECEIVE_PACKET.call(packet, this);
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -76,6 +74,31 @@ public class BaseClient implements Runnable {
             this.delayReconnection();
             continue reconnect; //Retry connection
         }
+    }
+
+    /**
+     * Resolves the compiled stubs ip.
+     * @param address
+     * @return
+     * @throws MalformedURLException
+     * @throws UnknownHostException
+     */
+    private String addressToIp(String address) throws MalformedURLException, UnknownHostException {
+        boolean containsProtocol = address.toLowerCase().contains("http://");
+
+        String externalIp = containsProtocol ?
+                InetAddress.getByName(new URL(this.address).getHost()).getHostAddress() :
+                InetAddress.getByName(new URL("http://" + this.address).getHost()).getHostAddress();
+
+        try {
+            String myExternalIp = new BufferedReader(new InputStreamReader(
+                    new URL("http://checkip.amazonaws.com/").openStream())).readLine();
+            if(externalIp.equals(myExternalIp))
+                return "127.0.0.1";
+        } catch (IOException e) {
+
+        }
+        return externalIp;
     }
 
     /**
@@ -97,8 +120,9 @@ public class BaseClient implements Runnable {
      * @throws IOException
      */
     private Socket connect(String address, int port) throws IOException {
+        address = this.addressToIp(address);
         System.out.println("Attempting to connect to " + address + ":" + port);
-        return SocketFactory.getDefault().createSocket(address, port);
+        return new Socket(address, port);
     }
 
     /**
@@ -114,7 +138,7 @@ public class BaseClient implements Runnable {
      * @return
      */
     public DataOutputStream getDataOutputStream() {
-        return this.outputStream;
+        return this.dataOutputStream;
     }
 
     /**
@@ -122,6 +146,6 @@ public class BaseClient implements Runnable {
      * @return
      */
     public DataInputStream getDataInputStream() {
-        return this.inputStream;
+        return this.dataInputStream;
     }
 }

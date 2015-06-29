@@ -6,29 +6,49 @@ import me.jershdervis.monitorj.eventapi.events.EventReceivePacket;
 import me.jershdervis.monitorj.server.PacketTaskManager;
 import me.jershdervis.monitorj.server.ServerManager;
 import me.jershdervis.monitorj.ui.UserInterface;
+import me.jershdervis.monitorj.util.GeoIP;
 
 import javax.swing.*;
+import java.io.IOException;
 
 /**
  * Created by Josh on 18/06/2015.
  */
 public class MonitorJ {
 
+    /**
+     * Initialized within this classes constructor
+     */
     private static MonitorJ instance;
 
+    /**
+     * Program Event initialization
+     */
     public final EventClientConnect EVENT_CLIENT_CONNECT = new EventClientConnect();
     public final EventClientDisconnect EVENT_CLIENT_DISCONNECT = new EventClientDisconnect();
     public final EventReceivePacket EVENT_RECEIVE_PACKET = new EventReceivePacket();
 
+    /**
+     * Initialized within this classes constructor
+     */
     private final PacketTaskManager packetTaskManager;
     private final ServerManager serverManager;
     private final UserInterface ui;
+    private final GeoIP geoIP;
 
+    /**
+     * Initializes:
+     * - MonitorJ instance
+     * - PacketTaskManager packetTaskManager
+     * - ServerManager serverManager
+     * - UserInterface ui
+     */
     public MonitorJ() {
         instance = this;
 
         this.packetTaskManager = new PacketTaskManager();
         this.serverManager = new ServerManager();
+        this.geoIP = new GeoIP();
 
         try {
             javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
@@ -45,6 +65,10 @@ public class MonitorJ {
         //
     }
 
+    /**
+     * Gets the current classes instance
+     * @return
+     */
     public static MonitorJ getInstance() {
         return instance;
     }
@@ -57,7 +81,27 @@ public class MonitorJ {
         return this.serverManager;
     }
 
+    /**
+     * Gets the PacketTaskManager class
+     * @return
+     */
+    public PacketTaskManager getPacketTaskManager() {
+        return this.packetTaskManager;
+    }
+
+    /**
+     * Returns the UserInterface class
+     * @return
+     */
     public UserInterface getUi() {
         return this.ui;
+    }
+
+    /**
+     * Returns the GeoIP class
+     * @return
+     */
+    public GeoIP getGeoIP() {
+        return this.geoIP;
     }
 }

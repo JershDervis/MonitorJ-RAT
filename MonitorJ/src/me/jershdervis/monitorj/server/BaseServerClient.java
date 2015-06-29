@@ -1,10 +1,10 @@
 package me.jershdervis.monitorj.server;
 
 import me.jershdervis.monitorj.MonitorJ;
+import me.jershdervis.monitorj.ui.components.RemoteChatFrame;
+import me.jershdervis.monitorj.ui.components.RemoteDesktopFrame;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 
 /**
@@ -12,21 +12,49 @@ import java.net.Socket;
  */
 public class BaseServerClient implements Runnable {
 
+    /**
+     * Set before ping packet is sent then used to calculate client ping when received
+     */
+    public long lastPingTime;
+
+    /**
+     * Client Information for current thread
+     */
     public String CLIENT_HWID;
     public String CLIENT_PC_NAME;
     public String CLIENT_USER_NAME;
     public String CLIENT_OS;
     public String CLIENT_IP;
     public int CLIENT_PORT;
+    public long CLIENT_PING;
 
+    /**
+     * Client Interface Variable initialized in constructor
+     */
+    private final RemoteDesktopFrame remoteDesktopFrame;
+    private final RemoteChatFrame remoteChatFrame;
+
+    /**
+     * Variables Initialized in current class constructor
+     */
     private final BaseServer host;
     private final Socket clientSocketConnection;
     private final DataOutputStream outputStream;
     private final DataInputStream inputStream;
 
-    //Should i use both a Buffered Stream and Data Stream?
+    /**
+     * Initializes the client connection stream
+     * Establishes class variables
+     * @param host
+     * @param clientSocket
+     * @throws IOException
+     */
     public BaseServerClient(BaseServer host, Socket clientSocket) throws IOException {
         this.host = host;
+
+        this.remoteDesktopFrame = new RemoteDesktopFrame(this);
+        this.remoteChatFrame = new RemoteChatFrame(this);
+
         this.clientSocketConnection = clientSocket;
         this.outputStream = new DataOutputStream(clientSocket.getOutputStream());
         this.inputStream = new DataInputStream(clientSocket.getInputStream());
@@ -34,25 +62,33 @@ public class BaseServerClient implements Runnable {
 
     @Override
     public void run() {
+        //Calls EventClientConnect event
         MonitorJ.getInstance().EVENT_CLIENT_CONNECT.call(host, this);
 
-        while(!this.clientSocketConnection.isClosed()) { //While this socket to the client is not closed
+        //While the client connection socket is open
+        while(!clientSocketConnection.isClosed()) {
             try {
                 int packet;
-                while ((packet = this.inputStream.readByte()) > -1) //Waits till packet received
+                while((packet = inputStream.readByte()) > 0) {
+                    //Calls EventReceivePacket with the specified packet from client
                     MonitorJ.getInstance().EVENT_RECEIVE_PACKET.call(packet, this);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
-                try {
-                    this.clientSocketConnection.close();
-                    this.host.getClientList().remove(this);
-                } catch (IOException ioe) {
-                    ioe.printStackTrace();
-                }
+                break;
             }
         }
 
+        //Calls EventClientDisconnect event
         MonitorJ.getInstance().EVENT_CLIENT_DISCONNECT.call(host, this);
+    }
+
+    public RemoteDesktopFrame getRemoteDesktopFrame() {
+        return this.remoteDesktopFrame;
+    }
+
+    public RemoteChatFrame getRemoteChatFrame() {
+        return this.remoteChatFrame;
     }
 
     /**
@@ -72,7 +108,7 @@ public class BaseServerClient implements Runnable {
     }
 
     /**
-     * Gets the DataOutputStream Object of the current client
+     * Gets the DataOutputStream Object of the current client Socket object
      * @return
      */
     public DataOutputStream getDataOutputStream() {
@@ -80,7 +116,7 @@ public class BaseServerClient implements Runnable {
     }
 
     /**
-     * Gets the DataInputStream Object of the current client
+     * Gets the DataInputStream Object of the current client Socket object
      * @return
      */
     public DataInputStream getDataInputStream() {

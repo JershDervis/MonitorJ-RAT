@@ -3,18 +3,34 @@ package me.jershdervis.monitorj.stub.client;
 /**
  * Created by Josh on 19/06/2015.
  */
-public class Packets {
-    public static final int PING = 1;
+public enum Packets {
 
-    public static final int REMOTE_CHAT_START = 2; //When received display RemoteChat window
-    public static final int REMOTE_CHAT_STOP = 3;  //When received hide the RemoteChat window
-    public static final int REMOTE_CHAT_MESSAGE = 4; //Send this packet when the client sends a message.
+    PING(1),
 
-    /**
-     * Connection Packets
-     */
-    public static final int RESTART_CLIENT_APPLICATION = 5;
-    public static final int DISCONNECT_CLIENT = 6;
-    public static final int SHUTDOWN_CLIENT_APPLICATION = 7;
-    public static final int UNINSTALL_CLIENT_APPLICATION = 8;
+    RESTART_CLIENT_APPLICATION(2),
+    DISCONNECT_CLIENT(3),
+    SHUTDOWN_CLIENT_APPLICATION(4),
+    UNINSTALL_CLIENT_APPLICATION(5),
+
+    RESTART_CLIENT_SYSTEM(6),
+    SHUTDOWN_CLIENT_SYSTEM(7),
+
+    REMOTE_DESKTOP_START(8),
+    REMOTE_DESKTOP_STOP(9),
+    REMOTE_DESKTOP_IMAGE(10),
+
+    REMOTE_CHAT_START(11),
+    REMOTE_CHAT_STOP(12),
+    REMOTE_CHAT_MESSAGE(13),
+    ;
+
+    private int packet;
+
+    Packets(int packet) {
+        this.packet = packet;
+    }
+
+    public int getPacketID() {
+        return this.packet;
+    }
 }
