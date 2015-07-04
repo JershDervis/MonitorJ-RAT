@@ -7,36 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa18cfd7-0cbd-45c9-9ef2-42feca2beaf5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_logoff.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_restart.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_shutdown.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_sleep.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/LogoffClientSystemTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/util/OSCheck.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RebootClientSystemTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/ShutdownClientSystemTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/SleepClientSystemTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/MonitorJStub.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/MonitorJStub.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/artifacts/MonitorJStub_jar/MonitorJStub.jar" afterPath="$PROJECT_DIR$/../MonitorJStub/out/artifacts/MonitorJStub_jar/MonitorJStub.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/MonitorJ_jar/MonitorJ_jar.jar" afterPath="$PROJECT_DIR$/out/artifacts/MonitorJ_jar/MonitorJ_jar.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/PacketTaskManager.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/PacketTaskManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/Packets.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/Packets.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/Packets.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/Packets.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame$1.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/util/ResourceLoader.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/util/ResourceLoader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$1.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$2.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$3.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$4.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/MonitorJStub.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/MonitorJStub.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTaskManager.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTaskManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/Packets.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/Packets.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/secure/StartupMonitor.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/secure/StartupMonitor.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/config.properties" afterPath="$PROJECT_DIR$/../MonitorJStub/src/config.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MonitorJStub/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -169,7 +140,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -204,8 +174,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -452,7 +423,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3372973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3372973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21428572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />

