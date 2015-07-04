@@ -26,6 +26,8 @@ public class MonitorJStub {
     public final EventDisconnect EVENT_DISCONNECT = new EventDisconnect();
     public final EventReceivePacket EVENT_RECEIVE_PACKET = new EventReceivePacket();
 
+    private final PacketTaskManager packetTaskManager;
+
     private final RemoteChatWindow chatWindow;
 
     private final String regKey;
@@ -37,31 +39,60 @@ public class MonitorJStub {
 
         this.chatWindow = new RemoteChatWindow();
 
-        //Initialize Packet Manager
-        new PacketTaskManager();
+        this.packetTaskManager = new PacketTaskManager();
 
-        this.regPersist = new Thread(new StartupMonitor(key));
-        this.regPersist.start();
+        //Initialize the Registry Persistence thread and store Thread locally
+        (this.regPersist = new Thread(new StartupMonitor(key))).start();
 
+        //Begin connection to server repetition thread
         new Thread(clientServerConnection = new BaseClient(ip, port)).start();
     }
 
+    /**
+     * Gets a static instance of the current class
+     * @return
+     */
     public static MonitorJStub getInstance() {
         return instance;
     }
 
+    /**
+     * Gets the Stubs config registry key name
+     * @return
+     */
     public String getRegKey() {
         return this.regKey;
     }
 
+    /**
+     * Gets the Thread for registry persistence
+     * @return
+     */
     public Thread getRegPersistThread() {
         return this.regPersist;
     }
 
+    /**
+     * Gets the initialized PacketTaskManager
+     * @return
+     */
+    public PacketTaskManager getPacketTaskManager() {
+        return this.packetTaskManager;
+    }
+
+    /**
+     * Gets the RemoteChatWindow UI to be used when server requests
+     * remote chat with client
+     * @return
+     */
     public RemoteChatWindow getChatWindow() {
         return this.chatWindow;
     }
 
+    /**
+     * Gets the BaseClient connection
+     * @return
+     */
     public BaseClient getClientServerConnection() {
         return this.clientServerConnection;
     }

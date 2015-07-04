@@ -15,31 +15,38 @@ public class PacketTaskManager {
 
     private ArrayList<PacketTask> packetTasks = new ArrayList<PacketTask>();
 
-    private static PacketTaskManager instance;
-
+    /**
+     * Loads pre-set packets
+     * TODO: Could possibly use reflection to load all packets in unique package on runtime
+     */
     public PacketTaskManager() {
-        instance = this;
         EventManager.register(this);
 
         this.addPacketTask(new PingTask());
-
-        this.addPacketTask(new RemoteChatStartTask());
-        this.addPacketTask(new RemoteChatStopTask());
-        this.addPacketTask(new RemoteChatMessage());
 
         this.addPacketTask(new RestartClientApplicationTask());
         this.addPacketTask(new DisconnectClientTask());
         this.addPacketTask(new ShutdownClientApplicationTask());
         this.addPacketTask(new UninstallClientApplicationTask());
 
+        this.addPacketTask(new SleepClientSystemTask());
+        this.addPacketTask(new LogoffClientSystemTask());
+        this.addPacketTask(new RebootClientSystemTask());
+        this.addPacketTask(new ShutdownClientSystemTask());
+
         this.addPacketTask(new RemoteDesktopStartTask());
         this.addPacketTask(new RemoteDesktopStopTask());
+
+        this.addPacketTask(new RemoteChatStartTask());
+        this.addPacketTask(new RemoteChatStopTask());
+        this.addPacketTask(new RemoteChatMessage());
     }
 
-    public static PacketTaskManager getInstance() {
-        return instance;
-    }
-
+    /**
+     * Called when a packet is received.
+     * This method determines the correct response that should be taken
+     * @param event
+     */
     @EventTarget
     public void onReceivePacket(EventReceivePacket event) {
         for(PacketTask task : packetTasks) {
@@ -54,19 +61,19 @@ public class PacketTaskManager {
         }
     }
 
+    /**
+     * Adds a PacketTask to the list of reactive Tasks when a Packet is received
+     * @param packetTask
+     */
     public void addPacketTask(PacketTask packetTask) {
         this.packetTasks.add(packetTask);
     }
 
+    /**
+     * Gets an ArrayList of set PacketTask objects
+     * @return
+     */
     public ArrayList<PacketTask> getPacketTasks() {
         return this.packetTasks;
-    }
-
-    public boolean isLegitPacket(int packet) {
-        for(PacketTask packetTask : packetTasks) {
-            if(packetTask.getPacketID() == packet)
-                return true;
-        }
-        return false;
     }
 }

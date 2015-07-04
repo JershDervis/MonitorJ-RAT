@@ -7,95 +7,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aa18cfd7-0cbd-45c9-9ef2-42feca2beaf5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/button_pause.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/button_play.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/clientlist_tab.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/compiler_tab.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/plugincenter_tab.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/socketmanager_tab.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/surveillance.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/surveillance_remotedesktop.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/tools.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/ClientTableCellRenderer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/ClientTableModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GeoIP.dat" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/GeoIP.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/MonitorJ_jar.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/RemoteDesktopFrame.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/RemoteDesktopImage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteDesktopStartTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteDesktopStopTask.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/threads/RemoteDesktopStream.java" />
-      <change type="DELETED" beforePath="C:\Users\Josh\Desktop\Coding\Java\MonitorJ\MonitorJ\out\production\MonitorJ\me\jershdervis\monitorj\ui\UserInterface$5.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josh\Desktop\Coding\Java\MonitorJ\MonitorJ\out\production\MonitorJ\me\jershdervis\monitorj\ui\components\AddSocketForm$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josh\Desktop\Coding\Java\MonitorJ\MonitorJ\out\production\MonitorJ\me\jershdervis\monitorj\ui\components\AddSocketForm$2.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josh\Desktop\Coding\Java\MonitorJ\MonitorJ\out\production\MonitorJ\me\jershdervis\monitorj\ui\components\RemoteChatWindow$1.class" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Josh\Desktop\Coding\Java\MonitorJ\MonitorJ\out\production\MonitorJ\me\jershdervis\monitorj\ui\components\RemoteChatWindow.class" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\Josh\Desktop\Coding\Java\MonitorJ\MonitorJ\src\me\jershdervis\monitorj\ui\components\RemoteChatWindow.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/RemoteChatFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/AddSocketForm.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/AddSocketForm.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/BaseClient.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/BaseClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/BaseServer.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/BaseServer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/BaseServerClient.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/BaseServerClient.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/DisconnectClientTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/DisconnectClientTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/eventapi/events/EventReceivePacket.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/eventapi/events/EventReceivePacket.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/MonitorJ.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/MonitorJ.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_logoff.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_restart.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_shutdown.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_sleep.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/LogoffClientSystemTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/util/OSCheck.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RebootClientSystemTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/ShutdownClientSystemTask.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/SleepClientSystemTask.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/MonitorJStub.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/MonitorJStub.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/artifacts/MonitorJStub_jar/MonitorJStub.jar" afterPath="$PROJECT_DIR$/../MonitorJStub/out/artifacts/MonitorJStub_jar/MonitorJStub.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/PacketTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/PacketTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/PacketTask.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/PacketTask.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/MonitorJ_jar/MonitorJ_jar.jar" afterPath="$PROJECT_DIR$/out/artifacts/MonitorJ_jar/MonitorJ_jar.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/PacketTaskManager.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/PacketTaskManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/PacketTaskManager.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/PacketTaskManager.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/Packets.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/Packets.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/Packets.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/Packets.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/PingTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/PingTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/packets/PingTask.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/packets/PingTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RemoteChatMessage.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RemoteChatMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/packets/RemoteChatMessage.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/packets/RemoteChatMessage.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStartTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStartTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStopTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStopTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/ui/RemoteChatWindow.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/ui/RemoteChatWindow.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame$1.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/components/RemoteChatFrame.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/util/ResourceLoader.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/util/ResourceLoader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RestartClientApplicationTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/RestartClientApplicationTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/ServerManager.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/server/ServerManager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/ShutdownClientApplicationTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/ShutdownClientApplicationTask.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/Start.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/Start.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/UninstallClientApplicationTask.class" afterPath="$PROJECT_DIR$/../MonitorJStub/out/production/MonitorJStub/me/jershdervis/monitorj/stub/client/tasks/UninstallClientApplicationTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$1.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$2.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$3.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$4.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface$4.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface.class" afterPath="$PROJECT_DIR$/out/production/MonitorJ/me/jershdervis/monitorj/ui/UserInterface.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/AddSocketForm.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/AddSocketForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/BaseClient.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/BaseClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/BaseServer.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/BaseServer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/BaseServerClient.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/BaseServerClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/DisconnectClientTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/DisconnectClientTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/eventapi/events/EventReceivePacket.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/eventapi/events/EventReceivePacket.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MonitorJ.iml" afterPath="$PROJECT_DIR$/MonitorJ.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/MonitorJ.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/MonitorJ.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/MonitorJStub.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/MonitorJStub.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/PacketTask.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/PacketTask.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTaskManager.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/PacketTaskManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/PacketTaskManager.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/PacketTaskManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/Packets.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/Packets.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/PingTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/PingTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/PingTask.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/PingTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteChatMessage.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteChatMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/RemoteChatMessage.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/RemoteChatMessage.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStartTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStartTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStopTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RemoteChatStopTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/ui/RemoteChatWindow.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/ui/RemoteChatWindow.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RestartClientApplicationTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/RestartClientApplicationTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/ServerManager.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/ServerManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/ShutdownClientApplicationTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/ShutdownClientApplicationTask.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/Start.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/Start.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/UninstallClientApplicationTask.java" afterPath="$PROJECT_DIR$/../MonitorJStub/src/me/jershdervis/monitorj/stub/client/tasks/UninstallClientApplicationTask.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java" afterPath="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/src/config.properties" afterPath="$PROJECT_DIR$/../MonitorJStub/src/config.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/.idea/misc.xml" afterPath="$PROJECT_DIR$/../MonitorJStub/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../MonitorJStub/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../MonitorJStub/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -164,7 +106,6 @@
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/RemoteChatWindow.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/hooks/ClientTableModel.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/SocketStream.java" />
-        <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Test.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/DecryptionUtil.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/BaseSocket.java" />
@@ -174,7 +115,6 @@
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/ClientTableRenderer.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/MonitorJ.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/ClientTableModel.java" />
-        <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/ServerManager.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/GeoIP.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/PingTask.java" />
@@ -183,8 +123,10 @@
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/RemoteChatMessage.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/packets/RemoteDesktopImage.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/RemoteDesktopFrame.java" />
-        <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java" />
         <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/RemoteChatFrame.java" />
+        <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java" />
+        <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java" />
+        <option value="$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java" />
       </list>
     </option>
   </component>
@@ -227,7 +169,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -261,63 +202,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitorJ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitorJ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitorJ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitorJ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="packets" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitorJ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="MonitorJ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="monitorj" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -564,7 +452,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33837837" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3372973" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21428572" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -603,20 +491,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/components/Toaster.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.57608694">
-          <caret line="352" column="32" selection-start-line="352" selection-start-column="32" selection-end-line="352" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/src.zip!/javax/swing/plaf/basic/BasicButtonListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3327645">
-          <caret line="251" column="0" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/remotechat.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -635,26 +509,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_restart.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_disconnect.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_shutdown.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_uninstall.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
@@ -803,13 +657,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28428093">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/server/PacketTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.53065777">
@@ -838,20 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/ClientTableCellRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28396437">
-          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3924192">
-          <caret line="41" column="129" selection-start-line="41" selection-start-column="30" selection-end-line="41" selection-end-column="129" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/util/GeoIP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8862876">
@@ -877,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="35" column="19" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -885,9 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.018952062">
           <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -895,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.92865103">
           <caret line="54" column="61" selection-start-line="54" selection-start-column="61" selection-end-line="54" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -903,15 +731,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="4" column="46" selection-start-line="4" selection-start-column="46" selection-end-line="4" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="348" column="72" selection-start-line="348" selection-start-column="72" selection-end-line="348" selection-end-column="72" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -919,7 +738,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4178082">
           <caret line="31" column="83" selection-start-line="31" selection-start-column="83" selection-end-line="31" selection-end-column="83" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -927,7 +745,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.61130136">
           <caret line="31" column="73" selection-start-line="31" selection-start-column="73" selection-end-line="31" selection-end-column="73" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_restart.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_disconnect.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_shutdown.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/connection_uninstall.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/resources/images/system_logoff.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/util/ResourceLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="68" column="128" selection-start-line="68" selection-start-column="128" selection-end-line="68" selection-end-column="128" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/server/Packets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="5" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/ClientTableCellRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37842464">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_31/src.zip!/javax/swing/AbstractButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3321918">
+          <caret line="1924" column="16" selection-start-line="1924" selection-start-column="16" selection-end-line="1924" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/me/jershdervis/monitorj/ui/UserInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0345596">
+          <caret line="188" column="103" selection-start-line="188" selection-start-column="103" selection-end-line="188" selection-end-column="103" />
         </state>
       </provider>
     </entry>

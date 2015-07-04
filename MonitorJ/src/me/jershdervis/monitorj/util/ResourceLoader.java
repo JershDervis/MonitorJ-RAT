@@ -30,6 +30,10 @@ public class ResourceLoader {
     public static ImageIcon CLIENT_CONNECTION_UNINSTALL;
 
     public static ImageIcon CLIENT_SYSTEM_MENU;
+    public static ImageIcon CLIENT_SYSTEM_SLEEP;
+    public static ImageIcon CLIENT_SYSTEM_LOGOFF;
+    public static ImageIcon CLIENT_SYSTEM_RESTART;
+    public static ImageIcon CLIENT_SYSTEM_SHUTDOWN;
 
     public static ImageIcon CLIENT_SURVEILLANCE_MENU;
     public static ImageIcon CLIENT_SURVEILLANCE_REMOTE_DESKTOP;
@@ -59,6 +63,10 @@ public class ResourceLoader {
 
             //SYSTEM SUB-MENU ICONS
             CLIENT_SYSTEM_MENU = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "system.png")));
+            CLIENT_SYSTEM_SLEEP = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "system_sleep.png")));
+            CLIENT_SYSTEM_LOGOFF = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "system_logoff.png")));
+            CLIENT_SYSTEM_RESTART = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "system_restart.png")));
+            CLIENT_SYSTEM_SHUTDOWN = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "system_shutdown.png")));
 
             //SURVEILLANCE SUB-MENU ICONS
             CLIENT_SURVEILLANCE_MENU = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "surveillance.png")));
