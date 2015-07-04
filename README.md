@@ -1,5 +1,5 @@
 # MonitorJ-RAT
-## A Remote Administration Tool written in Java
+A Remote Administration Tool written in Java
 
 ### Features List:
 * Multiple server listening
