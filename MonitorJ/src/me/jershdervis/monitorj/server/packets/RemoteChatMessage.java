@@ -9,6 +9,7 @@ import java.io.IOException;
 
 /**
  * Created by Josh on 20/06/2015.
+ * TODO: FIX COMPATIBILITY WITH REMOTE DESKTOP - IMPORTANT
  */
 public class RemoteChatMessage extends PacketTask {
 

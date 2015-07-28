@@ -36,7 +36,7 @@ public class StartupMonitor extends ClientSystemUtil implements Runnable {
                     break;
             }
             try {
-                Thread.sleep(1000L);
+                Thread.sleep(3000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

@@ -49,10 +49,8 @@ public class BaseServer implements Runnable {
     @Override
     public void run() {
         try {
-            while (!this.serverSocket.isClosed()) {
-                Socket clientSocket = this.serverSocket.accept();
-                new Thread(new BaseServerClient(this, clientSocket)).start();
-            }
+            while (!this.serverSocket.isClosed())
+                new Thread(new BaseServerClient(this, this.serverSocket.accept())).start();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -1,15 +1,14 @@
 package me.jershdervis.monitorj;
 
-import me.jershdervis.monitorj.eventapi.events.EventClientConnect;
-import me.jershdervis.monitorj.eventapi.events.EventClientDisconnect;
-import me.jershdervis.monitorj.eventapi.events.EventReceivePacket;
+import com.alee.laf.WebLookAndFeel;
+import me.jershdervis.monitorj.eventapi.events.*;
 import me.jershdervis.monitorj.server.PacketTaskManager;
 import me.jershdervis.monitorj.server.ServerManager;
 import me.jershdervis.monitorj.ui.UserInterface;
+import me.jershdervis.monitorj.util.FileManager;
 import me.jershdervis.monitorj.util.GeoIP;
 
 import javax.swing.*;
-import java.io.IOException;
 
 /**
  * Created by Josh on 18/06/2015.
@@ -24,15 +23,18 @@ public class MonitorJ {
     /**
      * Program Event initialization
      */
+    public final EventUILoaded EVENT_UI_LOADED = new EventUILoaded();
     public final EventClientConnect EVENT_CLIENT_CONNECT = new EventClientConnect();
     public final EventClientDisconnect EVENT_CLIENT_DISCONNECT = new EventClientDisconnect();
     public final EventReceivePacket EVENT_RECEIVE_PACKET = new EventReceivePacket();
+    public final EventReceiveDesktopImage EVENT_RECEIVE_DESKTOP_IMAGE = new EventReceiveDesktopImage();
 
     /**
      * Initialized within this classes constructor
      */
     private final PacketTaskManager packetTaskManager;
     private final ServerManager serverManager;
+    private final FileManager fileManager;
     private final UserInterface ui;
     private final GeoIP geoIP;
 
@@ -48,12 +50,17 @@ public class MonitorJ {
 
         this.packetTaskManager = new PacketTaskManager();
         this.serverManager = new ServerManager();
+        this.fileManager = new FileManager();
         this.geoIP = new GeoIP();
 
         try {
-            javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
+            javax.swing.UIManager.setLookAndFeel(WebLookAndFeel.class.getCanonicalName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
+                ex.printStackTrace();
+            }
         }
 
         //Create UserInterface:
@@ -87,6 +94,14 @@ public class MonitorJ {
      */
     public PacketTaskManager getPacketTaskManager() {
         return this.packetTaskManager;
+    }
+
+    /**
+     * Gets the FileManager class
+     * @return
+     */
+    public FileManager getFileManager() {
+        return this.fileManager;
     }
 
     /**

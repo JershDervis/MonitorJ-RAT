@@ -4,7 +4,6 @@ import me.jershdervis.monitorj.MonitorJ;
 import me.jershdervis.monitorj.server.BaseServerClient;
 import me.jershdervis.monitorj.server.PacketTask;
 import me.jershdervis.monitorj.server.Packets;
-import me.jershdervis.monitorj.server.ServerManager;
 import me.jershdervis.monitorj.ui.components.Toaster;
 import me.jershdervis.monitorj.util.GeoIP;
 import me.jershdervis.monitorj.util.ResourceLoader;
@@ -12,10 +11,7 @@ import me.jershdervis.monitorj.util.ResourceLoader;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 
 /**
  * Created by Josh on 19/06/2015.
@@ -38,46 +34,29 @@ public class PingTask extends PacketTask {
         client.CLIENT_PORT = client.getClientServerHost().getServerSocket().getLocalPort();
         client.CLIENT_PING = ping;
 
-        DefaultTableModel tableModel = ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel());
-
-        //Update Client Info
-        if(isClientOnTable(client)) {
-            int rowInTable = ServerManager.instance.getRowByClient(client);
-            tableModel.setValueAt(client.CLIENT_HWID, rowInTable, 1);
-            tableModel.setValueAt(client.CLIENT_PC_NAME, rowInTable, 2);
-            tableModel.setValueAt(client.CLIENT_USER_NAME, rowInTable, 3);
-            tableModel.setValueAt(client.CLIENT_OS, rowInTable, 4);
-            tableModel.setValueAt(client.CLIENT_IP, rowInTable, 5);
-            tableModel.setValueAt(client.CLIENT_PORT, rowInTable, 6);
-            tableModel.setValueAt(client.CLIENT_PING, rowInTable, 7);
-        }
-        //Otherwise add new client
-        else
-        {
-            String ip = client.CLIENT_IP.equals("127.0.0.1") ? GeoIP.HOST_EXTERNAL_IP : client.CLIENT_IP;
-            String countryCode = MonitorJ.getInstance().getGeoIP().getCountryCode(ip);
-            String countryName = MonitorJ.getInstance().getGeoIP().getCountryName(ip);
-            JLabel countryLabel = new JLabel(countryName); //Set name and icon here then get the icon in ClientTableCellRenderer
-            countryLabel.setIcon(MonitorJ.getInstance().getGeoIP().getCodeFlag(countryCode));
-            Object[] row = new Object[] {
-                    countryLabel,
-                    client.CLIENT_HWID,
-                    client.CLIENT_PC_NAME,
-                    client.CLIENT_USER_NAME,
-                    client.CLIENT_OS,
-                    client.CLIENT_IP,
-                    client.CLIENT_PORT,
-                    client.CLIENT_PING
-            };
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).addRow(row);
-            Toaster toaster = new Toaster();
-            toaster.setToasterMessageFont(new Font("Verdana", Font.PLAIN, 14));
-            toaster.setToasterHeight(46);
-            toaster.showToaster(
-                    ResourceLoader.CLIENT_CONNECT,
-                    "New Connection:\n"
-                            + client.CLIENT_PC_NAME + ":" + client.CLIENT_USER_NAME);
-        }
+        String ip = client.CLIENT_IP.equals("127.0.0.1") ? GeoIP.HOST_EXTERNAL_IP : client.CLIENT_IP;
+        String countryCode = MonitorJ.getInstance().getGeoIP().getCountryCode(ip);
+        String countryName = MonitorJ.getInstance().getGeoIP().getCountryName(ip);
+        JLabel countryLabel = new JLabel(countryName); //Set name and icon here then get the icon in ClientTableCellRenderer
+        countryLabel.setIcon(MonitorJ.getInstance().getGeoIP().getCodeFlag(countryCode));
+        Object[] row = new Object[] {
+                countryLabel,
+                client.CLIENT_HWID,
+                client.CLIENT_PC_NAME,
+                client.CLIENT_USER_NAME,
+                client.CLIENT_OS,
+                client.CLIENT_IP,
+                client.CLIENT_PORT,
+                client.CLIENT_PING
+        };
+        ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).addRow(row);
+        Toaster toaster = new Toaster();
+        toaster.setToasterMessageFont(new Font("Verdana", Font.PLAIN, 14));
+        toaster.setToasterHeight(46);
+        toaster.showToaster(
+                ResourceLoader.CLIENT_CONNECT,
+                "New Connection:\n"
+                        + client.CLIENT_PC_NAME + ":" + client.CLIENT_USER_NAME);
 
     }
 

@@ -1,5 +1,6 @@
 package me.jershdervis.monitorj.server.packets;
 
+import me.jershdervis.monitorj.MonitorJ;
 import me.jershdervis.monitorj.server.BaseServerClient;
 import me.jershdervis.monitorj.server.PacketTask;
 import me.jershdervis.monitorj.server.Packets;
@@ -8,10 +9,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.util.zip.GZIPInputStream;
 
 /**
  * Created by Josh on 22/06/2015.
@@ -26,31 +25,30 @@ public class RemoteDesktopImage extends PacketTask {
 
     @Override
     public void run(BaseServerClient client) throws IOException {
-        if(displayLabel == null)
-            displayLabel = client.getRemoteDesktopFrame().jLabel1;
+        this.displayLabel = client.getRemoteDesktopFrame().jLabel1;
 
         DataInputStream dis = client.getDataInputStream();
-        InputStream inImage = new ByteArrayInputStream(readBytes(dis));
-        BufferedImage bi = ImageIO.read(inImage);
 
-        Image image = bi.getScaledInstance(displayLabel.getWidth(), displayLabel.getHeight(), Image.SCALE_FAST);
+        int length = dis.readInt();
 
-        displayLabel.setIcon(new ImageIcon(image));
-    }
+        byte[] array = new byte[length];
 
-    /**
-     * Reads a full byte array length from DataInputStream
-     * @param dis
-     * @return
-     * @throws IOException
-     */
-    private byte[] readBytes(DataInputStream dis) throws IOException{
-        int len = dis.readInt();
-
-        byte[] data = new byte[len];
-        if (len > 0) {
-            dis.readFully(data);
+        int read = 0;
+        while (read < length) {
+            int j = dis.read(array, read, length - read);
+            if (j < 0) {
+                throw new EOFException();
+            }
+            read += j;
         }
-        return data;
+
+        BufferedImage bufferedImage = ImageIO.read(new GZIPInputStream(new ByteArrayInputStream(array)));
+
+        //Call event, used for scaling remote control clicks
+        MonitorJ.getInstance().EVENT_RECEIVE_DESKTOP_IMAGE.call(bufferedImage);
+
+        Image img = bufferedImage.getScaledInstance(displayLabel.getWidth(), displayLabel.getHeight(), Image.SCALE_FAST);
+
+        this.displayLabel.setIcon(new ImageIcon(img));
     }
 }

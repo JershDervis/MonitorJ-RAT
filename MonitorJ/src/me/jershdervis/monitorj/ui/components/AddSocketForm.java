@@ -2,7 +2,10 @@ package me.jershdervis.monitorj.ui.components;
 
 import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
+
+import me.jershdervis.monitorj.MonitorJ;
 import me.jershdervis.monitorj.server.ServerManager;
+import me.jershdervis.monitorj.util.ResourceLoader;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -113,12 +116,17 @@ public class AddSocketForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     private void addSocketButtonActionPerformed(java.awt.event.ActionEvent evt) {
         try {
-            System.out.println("Listening on port: " + portSpinner.getValue());
-            ServerManager.instance.listenOnPort((Integer) portSpinner.getValue());
+            String name = nameTextField.getText();
+            int port = (Integer) portSpinner.getValue();
+            String desc = descTextField.getText();
+
+            System.out.println("Listening on port: " + port);
+            ServerManager.instance.listenOnPort(port);
 
             DefaultTableModel model = (DefaultTableModel) parentScreen.socketTable.getModel();
-            model.addRow(new Object[]{nameTextField.getText(), portSpinner.getValue(), descTextField.getText()});
+            model.addRow(new Object[]{name, String.valueOf(port), desc});
 
+            MonitorJ.getInstance().getFileManager().saveSocketValue(name, port, desc);
         } catch (IOException e) {
             System.out.println("Failed to host server on port: " + (int) portSpinner.getValue());
             e.printStackTrace();

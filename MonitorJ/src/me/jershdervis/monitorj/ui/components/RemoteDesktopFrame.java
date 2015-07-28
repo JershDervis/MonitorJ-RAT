@@ -3,14 +3,16 @@ package me.jershdervis.monitorj.ui.components;
 import me.jershdervis.monitorj.eventapi.EventManager;
 import me.jershdervis.monitorj.eventapi.EventTarget;
 import me.jershdervis.monitorj.eventapi.events.EventClientDisconnect;
+import me.jershdervis.monitorj.eventapi.events.EventReceiveDesktopImage;
 import me.jershdervis.monitorj.server.BaseServer;
 import me.jershdervis.monitorj.server.BaseServerClient;
 import me.jershdervis.monitorj.server.Packets;
 import me.jershdervis.monitorj.util.ResourceLoader;
 
 import javax.swing.*;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.*;
+import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 /**
@@ -18,7 +20,11 @@ import java.io.IOException;
  */
 public class RemoteDesktopFrame extends javax.swing.JFrame {
 
+    private boolean isStreamInProgress;
+
     private final BaseServerClient client;
+
+    private BufferedImage lastImage;
 
     private javax.swing.JButton playBtn;
     private javax.swing.JButton stopBtn;
@@ -40,6 +46,11 @@ public class RemoteDesktopFrame extends javax.swing.JFrame {
             this.setVisible(false);
     }
 
+    @EventTarget
+    public void onReceiveDesktopImage(EventReceiveDesktopImage event) {
+        this.lastImage = event.getOriginalBufferedImage();
+    }
+
     private void initComponents() {
         playBtn = new javax.swing.JButton();
         stopBtn = new javax.swing.JButton();
@@ -55,6 +66,7 @@ public class RemoteDesktopFrame extends javax.swing.JFrame {
                 stopBtn.setEnabled(false);
                 try {
                     client.getDataOutputStream().writeByte(Packets.REMOTE_DESKTOP_STOP.getPacketID());
+                    isStreamInProgress = false;
                 } catch (IOException e1) {
                     e1.printStackTrace();
                 }
@@ -68,6 +80,7 @@ public class RemoteDesktopFrame extends javax.swing.JFrame {
             playBtn.setEnabled(false);
             try {
                 this.client.getDataOutputStream().writeByte(Packets.REMOTE_DESKTOP_START.getPacketID());
+                isStreamInProgress = true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -80,8 +93,38 @@ public class RemoteDesktopFrame extends javax.swing.JFrame {
             stopBtn.setEnabled(false);
             try {
                 this.client.getDataOutputStream().writeByte(Packets.REMOTE_DESKTOP_STOP.getPacketID());
+                isStreamInProgress = false;
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+
+        jLabel1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(isStreamInProgress) { //Add check if remote control enabled.
+                    Point panelPoint = e.getPoint();
+
+                    int scaleX = lastImage.getWidth() / jLabel1.getWidth();
+                    int scaleY = lastImage.getHeight() / jLabel1.getHeight();
+
+                    double scaledXClick = panelPoint.getX() * scaleX;
+                    double scaledYClick = panelPoint.getY() * scaleY;
+
+                    //Currently positions aren't 100% correct, they are a little off
+                    //Find some way of fixing the scaling
+                    try {
+                        Robot robot = new Robot();
+
+                        robot.mouseMove((int) scaledXClick, (int) scaledYClick);
+                        robot.mousePress(InputEvent.BUTTON1_MASK);
+                        robot.mouseRelease(InputEvent.BUTTON1_MASK);
+
+                    } catch (AWTException e1) {
+                        e1.printStackTrace();
+                    }
+                    System.out.println("Click at point X:" + scaledXClick + " Y:" + scaledYClick);
+                }
             }
         });
 

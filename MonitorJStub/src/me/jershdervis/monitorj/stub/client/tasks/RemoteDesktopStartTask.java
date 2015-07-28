@@ -23,7 +23,6 @@ public class RemoteDesktopStartTask extends PacketTask {
 
     @Override
     public void run(BaseClient client) throws IOException {
-        System.out.println("Starting Remote Desktop Stream");
         (remoteDesktopStream = new Thread(new RemoteDesktopStream(client))).start();
     }
 }

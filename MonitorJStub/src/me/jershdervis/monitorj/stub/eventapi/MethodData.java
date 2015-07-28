@@ -2,6 +2,9 @@ package me.jershdervis.monitorj.stub.eventapi;
 
 import java.lang.reflect.Method;
 
+/**
+ * @author DarkMagician6
+ */
 public class MethodData {
 
     public final Object source;

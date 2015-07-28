@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/**
+ * @author DarkMagician6
+ */
 public final class EventManager {
 
 	private static final Map<Class<? extends Event>, FlexibleArray<MethodData>> REGISTRY_MAP = new HashMap<Class<? extends Event>, FlexibleArray<MethodData>>();

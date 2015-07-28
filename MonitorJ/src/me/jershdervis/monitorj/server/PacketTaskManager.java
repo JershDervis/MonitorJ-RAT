@@ -34,6 +34,7 @@ public class PacketTaskManager {
         this.addPacketTask(new PingTask());
         this.addPacketTask(new RemoteChatMessage());
         this.addPacketTask(new RemoteDesktopImage());
+        this.addPacketTask(new RemoteMicSample());
     }
 
     /**
@@ -54,10 +55,10 @@ public class PacketTaskManager {
     public void onReceivePacket(EventReceivePacket event) {
         for(PacketTask task : packetTasks) {
             if(event.getPacketID() == task.getPacketID()) {
+                BaseServerClient client = event.getClient();
                 try {
-                    task.run(event.getClient());
-                    event.getClient().getDataOutputStream().flush();
-                    System.gc();
+                    task.run(client);
+                    client.getDataOutputStream().flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

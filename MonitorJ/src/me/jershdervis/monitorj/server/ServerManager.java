@@ -119,7 +119,6 @@ public class ServerManager {
 
     /**
      * Finds and returns BaseServerClient of the current select row
-     * TODO: Make similar method that returns and array of selected clients if more then 1 client is selected.
      * @return
      */
     public BaseServerClient getClientBySelectedRow() {
@@ -130,6 +129,21 @@ public class ServerManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns an ArrayList of all selected BaseServerClient objects on JTable
+     * @return
+     */
+    public ArrayList<BaseServerClient> getAllSelectedClients() {
+        ArrayList<BaseServerClient> tempClientList = new ArrayList<>();
+        JTable table = MonitorJ.getInstance().getUi().clientListTable;
+        int[] selectedRows = table.getSelectedRows();
+        for(int currentRow : selectedRows) {
+            BaseServerClient currentClient = this.getClientByRow(currentRow);
+            tempClientList.add(currentClient);
+        }
+        return tempClientList;
     }
 
     /**

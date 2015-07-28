@@ -56,9 +56,8 @@ public class BaseClient implements Runnable {
             while (!this.serverSocketConnection.isClosed()) {
                 int packet;
                 try {
-                    while((packet = this.dataInputStream.readByte()) > 0) {
+                    while((packet = this.dataInputStream.readByte()) < 0)
                         MonitorJStub.getInstance().EVENT_RECEIVE_PACKET.call(packet, this);
-                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

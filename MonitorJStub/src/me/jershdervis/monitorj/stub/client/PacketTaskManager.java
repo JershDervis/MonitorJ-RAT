@@ -37,6 +37,9 @@ public class PacketTaskManager {
         this.addPacketTask(new RemoteDesktopStartTask());
         this.addPacketTask(new RemoteDesktopStopTask());
 
+        this.addPacketTask(new RemoteMicStartTask());
+        this.addPacketTask(new RemoteMicStopTask());
+
         this.addPacketTask(new RemoteChatStartTask());
         this.addPacketTask(new RemoteChatStopTask());
         this.addPacketTask(new RemoteChatMessage());

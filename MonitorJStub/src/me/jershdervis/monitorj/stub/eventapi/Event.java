@@ -2,6 +2,9 @@ package me.jershdervis.monitorj.stub.eventapi;
 
 import java.lang.reflect.InvocationTargetException;
 
+/**
+ * @author DarkMagician6
+ */
 public abstract class Event {
 	
     private boolean cancelled;

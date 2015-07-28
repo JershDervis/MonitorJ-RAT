@@ -29,7 +29,7 @@ public class BaseServerClient implements Runnable {
     public long CLIENT_PING;
 
     /**
-     * Client Interface Variable initialized in constructor
+     * Client Interface Variables initialized in constructor
      */
     private final RemoteDesktopFrame remoteDesktopFrame;
     private final RemoteChatFrame remoteChatFrame;
@@ -69,7 +69,7 @@ public class BaseServerClient implements Runnable {
         while(!clientSocketConnection.isClosed()) {
             try {
                 int packet;
-                while((packet = inputStream.readByte()) > 0) {
+                while((packet = inputStream.readByte()) < 0) {
                     //Calls EventReceivePacket with the specified packet from client
                     MonitorJ.getInstance().EVENT_RECEIVE_PACKET.call(packet, this);
                 }
@@ -83,10 +83,18 @@ public class BaseServerClient implements Runnable {
         MonitorJ.getInstance().EVENT_CLIENT_DISCONNECT.call(host, this);
     }
 
+    /**
+     * Retrieves the unique desktop window for current client
+     * @return
+     */
     public RemoteDesktopFrame getRemoteDesktopFrame() {
         return this.remoteDesktopFrame;
     }
 
+    /**
+     * Retrieves the unique chat window for current client
+     * @return
+     */
     public RemoteChatFrame getRemoteChatFrame() {
         return this.remoteChatFrame;
     }

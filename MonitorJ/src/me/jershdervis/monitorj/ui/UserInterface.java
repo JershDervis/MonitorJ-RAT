@@ -10,10 +10,14 @@ import me.jershdervis.monitorj.ui.components.RemoteDesktopFrame;
 import me.jershdervis.monitorj.util.ResourceLoader;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Josh on 18/06/2015.
@@ -28,14 +32,12 @@ public class UserInterface extends javax.swing.JFrame {
     public UserInterface() {
         initComponents();
         this.addSocketForm = new AddSocketForm(this);
+        MonitorJ.getInstance().EVENT_UI_LOADED.call(this);
     }
 
     private void initComponents() {
-
         clientOptionMenu = new javax.swing.JPopupMenu();
         socketOptionMenu = new javax.swing.JPopupMenu();
-        addSocketMenuItem = new javax.swing.JMenuItem();
-        removeSocketMenuItem = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         clientPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -51,9 +53,14 @@ public class UserInterface extends javax.swing.JFrame {
         socketTable = new javax.swing.JTable();
         addSocketButton = new javax.swing.JButton();
         removeSocketButton = new javax.swing.JButton();
+        removeSocketButton.setEnabled(false);
+
+        ShutdownHook shutdownHook = new ShutdownHook();
+        Runtime.getRuntime().addShutdownHook(shutdownHook);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MonitorJ v0.1");
+        setIconImage(ResourceLoader.FORM_ICON.getImage());
 
         clientListTable.setModel(new ClientTableModel());
         clientListTable.setDefaultRenderer(JLabel.class, new ClientTableCellRenderer());
@@ -163,14 +170,17 @@ public class UserInterface extends javax.swing.JFrame {
                 socketTableMouseReleased(evt);
             }
         });
+        socketTable.getSelectionModel().addListSelectionListener(event -> SwingUtilities.invokeLater(() -> removeSocketButton.setEnabled(true)));
+
         jScrollPane2.setViewportView(socketTable);
 
+        addSocketButton.setIcon(ResourceLoader.BUTTON_SOCKET_ADD);
         addSocketButton.setText("Add Socket");
         addSocketButton.setPreferredSize(new java.awt.Dimension(107, 23));
         addSocketButton.addActionListener(evt -> addSocketButtonActionPerformed(evt));
 
-        removeSocketButton.setText("Remove Socket");
-//        removeSocketButton.setEnabled(false);
+        removeSocketButton.setIcon(ResourceLoader.BUTTON_SOCKET_REMOVE);
+        removeSocketButton.setText("Close Socket");
         removeSocketButton.addActionListener(evt -> removeSocketButtonActionPerformed(evt));
 
         javax.swing.GroupLayout socketManagerPanelLayout = new javax.swing.GroupLayout(socketManagerPanel);
@@ -213,21 +223,31 @@ public class UserInterface extends javax.swing.JFrame {
     }
 
     private void addSocketButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        addSocketForm.setAlwaysOnTop(true);
         addSocketForm.setLocationRelativeTo(null);
         addSocketForm.setVisible(true);
     }
 
     private void removeSocketButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        int[] selectedRows = socketTable.getSelectedRows();
         if (socketTable.getSelectedRow() != -1) {
-            int port = (int) socketTable.getModel().getValueAt(socketTable.getSelectedRow(), 1);
-            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to stop listening on port: " + socketTable.getModel().getValueAt(socketTable.getSelectedRow(), 1), "Are you sure?", JOptionPane.YES_NO_OPTION);
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to stop listening on " + selectedRows.length + " port(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
             if (dialogResult == JOptionPane.YES_OPTION) {
-                ServerManager.instance.closeServerOnPort(port);
-                DefaultTableModel model = (DefaultTableModel) socketTable.getModel();
-                model.removeRow(socketTable.getSelectedRow());
+                for(int currentPort : getSelectedPorts()) {
+                    System.out.println("Closing port: " + currentPort);
+                    ServerManager.instance.closeServerOnPort(currentPort);
+                    MonitorJ.getInstance().getFileManager().removeSocketValue(currentPort);
+                    ((DefaultTableModel) socketTable.getModel()).removeRow(socketTable.getSelectedRow());
+                }
+                SwingUtilities.invokeLater(() -> removeSocketButton.setEnabled(false));
             }
         }
+    }
+
+    private List<Integer> getSelectedPorts() {
+        List<Integer> ports = new ArrayList<Integer>();
+        for(int current : socketTable.getSelectedRows())
+            ports.add(Integer.parseInt(socketTable.getModel().getValueAt(current, 1).toString()));
+        return ports;
     }
 
     private void socketTableMousePressed(java.awt.event.MouseEvent evt) {
@@ -249,16 +269,14 @@ public class UserInterface extends javax.swing.JFrame {
     }
 
     private void showClientPopupMenu(MouseEvent e) {
-        int r = clientListTable.rowAtPoint(e.getPoint());
-        if (r >= 0 && r < clientListTable.getRowCount())
-            clientListTable.setRowSelectionInterval(r, r);
-        else
-            clientListTable.clearSelection();
+        if(clientListTable.getSelectedRows().length <= 1) {
+            int rowNumber = clientListTable.rowAtPoint(e.getPoint());
+            ListSelectionModel model = clientListTable.getSelectionModel();
+            model.setSelectionInterval(rowNumber, rowNumber);
+        }
 
-        if (clientListTable.getSelectedRow() < 0)
-            return;
-
-        clientOptionMenu.show(clientListTable, e.getX(), e.getY());
+        if (e.isPopupTrigger() && e.getComponent() instanceof javax.swing.JTable)
+            clientOptionMenu.show(clientListTable, e.getX(), e.getY());
     }
 
     private void loadClientPopupMenu() {
@@ -267,89 +285,57 @@ public class UserInterface extends javax.swing.JFrame {
 
         JMenuItem restartClientApp = new JMenuItem("Restart", ResourceLoader.CLIENT_CONNECTION_RESTART);
         restartClientApp.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.RESTART_CLIENT_APPLICATION.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to restart the selected client stub(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.RESTART_CLIENT_APPLICATION.getPacketID());
         });
         JMenuItem disconnectClient = new JMenuItem("Disconnect", ResourceLoader.CLIENT_CONNECTION_DISCONNECT);
         disconnectClient.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.DISCONNECT_CLIENT.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to disconnect the selected client stub(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.DISCONNECT_CLIENT.getPacketID());
         });
         JMenuItem shutdownClientApp = new JMenuItem("Shutdown", ResourceLoader.CLIENT_CONNECTION_SHUTDOWN);
         shutdownClientApp.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.SHUTDOWN_CLIENT_APPLICATION.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to shutdown the selected client stub(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.SHUTDOWN_CLIENT_APPLICATION.getPacketID());
         });
         JMenuItem uninstallClientApp = new JMenuItem("Uninstall", ResourceLoader.CLIENT_CONNECTION_UNINSTALL);
         uninstallClientApp.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.UNINSTALL_CLIENT_APPLICATION.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to uninstall the selected client stub(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.UNINSTALL_CLIENT_APPLICATION.getPacketID());
         });
 
         JMenu systemSubMenu = new JMenu("System");
         systemSubMenu.setIcon(ResourceLoader.CLIENT_SYSTEM_MENU);
 
-        //TODO: Make the following work
         JMenuItem sleepClientSystem = new JMenuItem("Sleep", ResourceLoader.CLIENT_SYSTEM_SLEEP);
         sleepClientSystem.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.SLEEP_CLIENT_SYSTEM.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to put the selected client computer(s) to sleep?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.SLEEP_CLIENT_SYSTEM.getPacketID());
         });
         JMenuItem logoffClientSystem = new JMenuItem("Log Off", ResourceLoader.CLIENT_SYSTEM_LOGOFF);
         logoffClientSystem.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.LOGOFF_CLIENT_SYSTEM.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to logoff the selected client computer(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.LOGOFF_CLIENT_SYSTEM.getPacketID());
         });
         JMenuItem restartClientSystem = new JMenuItem("Reboot", ResourceLoader.CLIENT_SYSTEM_RESTART);
         restartClientSystem.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.RESTART_CLIENT_SYSTEM.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to reboot the selected client computer(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.RESTART_CLIENT_SYSTEM.getPacketID());
         });
         JMenuItem shutdownClientSystem = new JMenuItem("Shutdown", ResourceLoader.CLIENT_SYSTEM_SHUTDOWN);
         shutdownClientSystem.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            ((DefaultTableModel) MonitorJ.getInstance().getUi().clientListTable.getModel()).removeRow(ServerManager.instance.getRowByClient(selectedClient));
-            try {
-                selectedClient.getDataOutputStream().writeByte(Packets.SHUTDOWN_CLIENT_SYSTEM.getPacketID());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Are you sure you'd like to shutdown the selected client computer(s)?", "Are you sure?", JOptionPane.YES_NO_OPTION);
+            if(dialogResult == JOptionPane.YES_OPTION)
+                this.runPacketOnAllSelectedClients(Packets.SHUTDOWN_CLIENT_SYSTEM.getPacketID());
         });
         //
-
 
         JMenu surveillanceSubMenu = new JMenu("Surveillance");
         surveillanceSubMenu.setIcon(ResourceLoader.CLIENT_SURVEILLANCE_MENU);
@@ -361,13 +347,20 @@ public class UserInterface extends javax.swing.JFrame {
             selectedClient.getRemoteDesktopFrame().setVisible(true);
         });
 
+        //TODO: Create Remote Microphone listener and UI
+        JMenuItem remoteMic = new JMenuItem("Remote Microphone", ResourceLoader.CLIENT_SURVEILLANCE_REMOTE_MIC);
+        remoteDesktop.addActionListener(evt -> {
+            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
+
+        });//
+
         JMenu toolsSubMenu = new JMenu("Tools");
         toolsSubMenu.setIcon(ResourceLoader.CLIENT_TOOLS_MENU);
 
         JMenuItem remoteChat = new JMenuItem("Remote Chat", ResourceLoader.CLIENT_TOOLS_REMOTE_CHAT);
         remoteChat.addActionListener(evt -> {
-            BaseServerClient selectedClient = ServerManager.instance.getClientBySelectedRow();
-            selectedClient.getRemoteDesktopFrame().setTitle("Remote Chat with " + selectedClient.CLIENT_PC_NAME + ":" + selectedClient.CLIENT_USER_NAME);
+            BaseServerClient selectedClient = MonitorJ.getInstance().getServerManager().getClientBySelectedRow();
+            selectedClient.getRemoteChatFrame().setTitle("Remote Chat with " + selectedClient.CLIENT_PC_NAME + ":" + selectedClient.CLIENT_USER_NAME);
             try {
                 selectedClient.getDataOutputStream().writeByte(Packets.REMOTE_CHAT_START.getPacketID());
             } catch (IOException e) {
@@ -389,14 +382,25 @@ public class UserInterface extends javax.swing.JFrame {
         clientOptionMenu.add(systemSubMenu);
 
         surveillanceSubMenu.add(remoteDesktop);
+        surveillanceSubMenu.add(remoteMic);
         clientOptionMenu.add(surveillanceSubMenu);
 
         toolsSubMenu.add(remoteChat);
         clientOptionMenu.add(toolsSubMenu);
     }
 
+    private void runPacketOnAllSelectedClients(int packetID) {
+        ArrayList<BaseServerClient> clients = ServerManager.instance.getAllSelectedClients();
+        for(BaseServerClient client : clients) {
+            try {
+                client.getDataOutputStream().writeByte(packetID);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private javax.swing.JButton addSocketButton;
-    private javax.swing.JMenuItem addSocketMenuItem;
     public javax.swing.JTable clientListTable;
     private javax.swing.JPopupMenu clientOptionMenu;
     private javax.swing.JPanel clientPanel;
@@ -408,7 +412,6 @@ public class UserInterface extends javax.swing.JFrame {
     private javax.swing.JPanel pluginCenterPanel;
     public javax.swing.JTable pluginCenterTable;
     private javax.swing.JButton removeSocketButton;
-    private javax.swing.JMenuItem removeSocketMenuItem;
     private javax.swing.JPanel socketManagerPanel;
     public javax.swing.JPopupMenu socketOptionMenu;
     public javax.swing.JTable socketTable;
