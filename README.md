@@ -3,7 +3,7 @@ A Remote Administration Tool written in Java. Currently not ready for public use
 
 ###Used Libraries:
 * Maxmind GeoIP: https://github.com/maxmind/geoip-api-java
-* WebLaf-UI-1.28: https://github.com/mgarin/weblaf
+* WebLaf-Complete-1.28: https://github.com/mgarin/weblaf
 * JDOM-2.0.6: http://www.jdom.org/downloads/index.html
 
 ##This project was designed for educational purposes only and should only be used on devices you own.
